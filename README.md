@@ -1,23 +1,36 @@
 # 0. Spikefinder-Elephant, w/ and w/o embedding
 
-This is a Keras network for spike detection from calcium traces, taking part in the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). Two networks have been considered: 1) A simple three-layer CNN. 2) The same CNN, but trained with selection of the training sets that is weighted according to their similarity to the test dataset with respect to statistical properties like kurtosis, autocorrelation times, hurst coefficients etc.
+This is program based on convolutional neural network for spike detection from calcium traces, taking part in the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python/Keras, with some minor (not necessarily required) parts in Matlab.
 
-1. Structure of the three-layer CNN (Elephant)
-2. Running the Elephant code
-3. The idea behind the embedding spaces
-4. Code organization related to the embedding space
+Two networks have been tested: 1) A simple three-layer CNN. 2) The same CNN, but trained with selection of the training sets that is weighted according to their similarity to the test dataset with respect to statistical properties like kurtosis, autocorrelation times, hurst coefficients etc.
+
+1. Typical results
+2. Structure of the three-layer CNN (Elephant)
+3. Running the Elephant code
+4. The idea behind the embedding spaces
+5. Code organization related to the embedding space
 
 
-# 1. Spikefinder-Elephant, structure of the CNN
+# 1. Typical results
 
-![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/Figure4.png)
+At the bottom, the recorded calcium trace is shown; in the middle, the spikes (ground truth recording). Above are predictions from the Statistics-Embedded CNN (black), the simple Elephant CNN (green) and the predictions of a less elaborate, model-based algorithm (https://github.com/PTRRupprecht/SpikefinderCompetition2017, red).
+
+![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic1-4.png)
+
+![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic5-8.png)
+
+![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic10-7.png)
+
+
+
+# 2. Spikefinder-Elephant, structure of the CNN
+
+![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Figure4.png)
 
 Windowsize of the input is 128 datapoints, corresponding to 1.28 sec. Filter sizes of the convolutional filters are 41, 21 and 7 pixel for conv1d_1, conv1d_2 and conv1d_3, respectively. No zero padding was used.
 
 
-# 2. Running the Elephant code
-
-To Be Done.
+# 3. Running the Elephant CNN code
 
 0. Install tensorflow and keras into a Python virtualenv
 
@@ -25,20 +38,14 @@ To Be Done.
     spikefinder.test/
     spikefinder.train/
 
-2. Start ipython
+2. Start ipython, spyder, ...
 
-3. Configure training in config.py
+3. If needed, configure training in elephant/config_elephant.py
 
-4. Run data loading and preprocessing:
-
-	run -i setup.py
-
-5. Train and evaluate models:
-
-	run -i train.py
+4. Run 'run_elephant.py'
 
 
-# 3. The idea behind the embedding spaces
+# 4. The idea behind the embedding spaces
 
 The ten available datasets are different in terms of calcium indicator, signal-to-noise, neuron type and brain area and possibly temperature of the recording, resulting in different optimal convolutional filters for each dataset. We try to solve this problem by first answering the following questions: Which neurons/datasets have similar convolutional filters?
 
@@ -46,21 +53,21 @@ To answer this question, we fit a simple 2-layer convolutional network to a sing
 Normalizing over columns, symmetrizing the matrix and averaging over datasets yields the distance matrix (middle, datasets indicated with numbers).
 A PCA of the distance matrix yields an embedding space, of which the first two components are plotted (right). Datasets being close to each other (e.g. 7 and 10) can predict each other's very well, whereas datasets distant from each other in space (e.g. datasets 5 and 4) are not good at predicting each other's mutual spikes.
 
-![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/Figure1.png)
+![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Figure1.png)
 
 The next challenge is to map a neuron of a dataset of unknown properties onto the right location of this embedding space. To this end, we calculated statistical properties of the raw calcium time traces: Variance, kurtosis, skewness; autocorrelation value after 0.5, 1 and 2 seconds; generalized Hurst exponents 1-5; and the power spectral density at different frequencies between 0.1 and 3.6 Hz (left). After averaging the values over datasets (middle), we used the two first principal components to generate a map of proximity in statistical property space (right). This map was generated using the training dataets (numbers on the right side of the symbols), and test datasets were mapped into the PCA space (numbers below the symbols).
 
-![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/Figure2.png)
+![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Figure2.png)
 
 Next we trained a regressor to map the statistical poperties' embedding space to the predictive embedding space. For this we used a DecisionTreeRegressor from the scikit-learn package.
 
-![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/Figure3.png)
+![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Figure3.png)
 
 In total, this procedure spans an embedding space that allows to understand the mutual predictive power of different datasets, and the mutual distance between datasets in terms of their statistical properties.
 
 It would probably require a larger collection of diverse datasets to make this embedding robust and good for any new datasets. In the 10 datasets given, there are some outliers (e.g. dataset 5), and if a new dataset is an outlier as well (which you cannot know beforehand easily), it will not be predicted well by any model that uses those 10 datasets in a selective or attentive manner.
 
 
-# 4. Code organization related to the embedding space
+# 5. Code organization related to the embedding space
 
-To be done.
+Execute 'run_statEmbedding.py' step by step. The procedure consists of several steps (fitting single-neuron models, generating embedding spaces, mapping between the spaces; loading data, defining the data, focused retraining of an existing model; evaluation), but the first three steps can be skipped, because they generate files that are already provided in the repository.
