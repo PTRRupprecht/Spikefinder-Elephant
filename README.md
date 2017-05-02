@@ -1,6 +1,6 @@
-# 0. Spikefinder-Elephant, w/ and w/o embedding
+# 0. Overview
 
-This is program based on convolutional neural network for spike detection from calcium traces, taking part in the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python/Keras, with some minor (not necessarily required) parts in Matlab.
+This is a program based on convolutional neural network for spike detection from calcium traces, taking part in the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python/Keras, with some minor (not necessarily required) parts in Matlab.
 
 Two networks have been tested: 1) A simple three-layer CNN. 2) The same CNN, but trained with selection of the training sets that is weighted according to their similarity to the test dataset with respect to statistical properties like kurtosis, autocorrelation times, hurst coefficients etc.
 
