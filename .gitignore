@@ -1,0 +1,5 @@
+# Object files
+/spikefinder.test/**
+/spikefinder.train/**
+*.pyc
+
