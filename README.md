@@ -15,9 +15,15 @@ Two networks have been tested: 1) A simple three-layer CNN. 2) The same CNN, but
 
 At the bottom, the recorded calcium trace is shown; in the middle, the spikes (ground truth recording). Above are predictions from the Statistics-Embedded CNN (black), the simple Elephant CNN (green) and the predictions of a less elaborate, model-based algorithm (https://github.com/PTRRupprecht/SpikefinderCompetition2017, red).
 
+The first example is from an OGB recording.
+
 ![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic1-4.png)
 
+The second example is from a jRGECO recording that is particularly nice and easy to analyze.
+
 ![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic5-8.png)
+
+The thrid example is from a GCaMP6s recording that is particularly difficult to analyze (but this is one of the nicer cells in terms of SNR), also because the firing rate is high compared to the other datasets.
 
 ![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic10-7.png)
 
