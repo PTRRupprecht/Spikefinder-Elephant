@@ -2,7 +2,7 @@
 "With four parameters I can fit an elephant, and with five I can make him wiggle his trunk."
 *John von Neumann*
 
-# 0. Introduction
+## 0. Introduction
 
 This is a program based on convolutional neural networks for spike detection from calcium traces, written by @PTRRupprecht and @unidesigner, as part of the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python/Keras, with some minor (not necessarily required) parts in Matlab.
 
@@ -13,34 +13,35 @@ Two networks have been tested: 1) A simple three-layer CNN. 2) The same CNN, but
 3. Running the Elephant code
 4. The idea behind the embedding spaces
 5. Code organization related to the embedding space
+<br><br>
 
-
-# 1. Typical results
+## 1. Typical results
 
 At the bottom, the recorded calcium trace is shown; in the middle, the spikes (ground truth recording). Above are predictions from the Statistics-Embedded CNN (black), the simple Elephant CNN (green) and the predictions of a less elaborate, model-based algorithm (https://github.com/PTRRupprecht/SpikefinderCompetition2017, red).
 
 The first example is from an OGB recording.
 
-![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic1-4.png)
+<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic1-4.png" width="700">
 
 The second example is from a jRGECO recording that is particularly nice and easy to analyze.
 
-![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic10-7.png)
+<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic10-7.png" width="700">
 
 The thrid example is from a GCaMP6s recording that is particularly difficult to analyze (but this is one of the nicer cells in terms of SNR), also because the firing rate is high compared to the other datasets.
 
-![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic5-8.png)
+<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic5-8.png" width="700">
+
+<br><br>
 
 
-
-# 2. Spikefinder-Elephant, structure of the CNN
+## 2. Spikefinder-Elephant, structure of the CNN
 
 ![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Figure4.png)
 
 Windowsize of the input is 128 datapoints, corresponding to 1.28 sec. Filter sizes of the convolutional filters are 41, 21 and 7 pixel for conv1d_1, conv1d_2 and conv1d_3, respectively. No zero padding was used.
+<br><br>
 
-
-# 3. Running the Elephant CNN code
+## 3. Running the Elephant CNN code
 
 0. Install tensorflow and keras into a Python virtualenv
 
@@ -53,9 +54,10 @@ Windowsize of the input is 128 datapoints, corresponding to 1.28 sec. Filter siz
 3. If needed, configure training in elephant/config_elephant.py
 
 4. Run 'run_elephant.py'
+<br><br>
 
 
-# 4. The idea behind the embedding spaces
+## 4. The idea behind the embedding spaces
 
 The ten available datasets are different in terms of calcium indicator, signal-to-noise, neuron type and brain area and possibly temperature of the recording, resulting in different optimal convolutional filters for each dataset. We try to solve this problem by first answering the following questions: Which neurons/datasets have similar convolutional filters?
 
@@ -77,7 +79,8 @@ In total, this procedure spans an embedding space that allows to understand the 
 
 It would probably require a larger collection of diverse datasets to make this embedding robust and good for any new datasets. In the 10 datasets given, there are some outliers (e.g. dataset 5), and if a new dataset is an outlier as well (which you cannot know beforehand easily), it will not be predicted well by any model that uses those 10 datasets in a selective or attentive manner.
 
+<br><br>
 
-# 5. Code organization related to the embedding space
+## 5. Code organization related to the embedding space
 
 Execute 'run_statEmbedding.py' step by step. The procedure consists of several steps (fitting single-neuron models, generating embedding spaces, mapping between the spaces; loading data, defining the data, focused retraining of an existing model; evaluation), but the first three steps can be skipped, because they generate files that are already provided in the repository.
