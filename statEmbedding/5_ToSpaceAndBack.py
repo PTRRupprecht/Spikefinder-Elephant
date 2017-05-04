@@ -48,7 +48,7 @@ for training in range(0,2):
 				datasets_to_train = {}
 				IY = datasets == dataset_chosen
 				datasets_to_train[dataset_chosen] = neurons[IY]
-				execfile("elephant/3_preprocessing.py")
+				exec( open("elephant/3_preprocessing.py").read() )
 				X = X[0:int(X.shape[0]*distancesX[kk]*dataset_fraction_to_take[kk]),:,:]
 				Y = Y[0:int(Y.shape[0]*distancesX[kk]*dataset_fraction_to_take[kk]),:]
 				XX0 = np.concatenate((XX0,X),axis=0)

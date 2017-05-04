@@ -24,4 +24,5 @@ training = 1
 # 1 = use pretrained networks, 0 = use the network that has been trained in this session
 load_weights = 1
 
-execfile("elephant/5_make_and_save_predictions.py")
+exec(open("elephant/5_make_and_save_predictions.py").read())
+
