@@ -83,12 +83,30 @@ load('Parameters174.mat');
 
 Parameters174 = Parameters174(:,goodindizes);
 
+ParametersXX = Parameters174;
+for k = 1:10
+    ixx = find(DaSet == k);
+    ParametersXX(:,ixx) = repmat(mean(ParametersXX(:,ixx),2),[1 numel(ixx)]);
+end
+figure, imagesc(ParametersXX)
+colormap(paruly)
+caxis([-1.4 1.4])
+
+ParametersXX = Parameters32;
+for k = 1:10
+    ixx = find(DaSet == k);
+    ParametersXX(:,ixx) = repmat(mean(ParametersXX(:,ixx),2),[1 numel(ixx)]);
+end
+figure, imagesc(ParametersXX)
+colormap(paruly)
+caxis([-1.4 1.4])
+
 [coeff,mappedY] = pca(Parameters174');
 
 embedding_2D_stats = zeros(10,2);
 Daset = DasetS(goodindizes);
 for j = 1:10
-    embedding_2D_stats(j,:) = mean(mappedY(Daset==j,1:2));
+    embedding_2D_stats(j,:) = median(mappedY(Daset==j,1:2));
 end
 
 symbolsX = {'o','x','s','d','^','p','h','*','+','>'};
@@ -102,13 +120,13 @@ end
 load('Parameters32.mat');
 
 % project into PCA space defined by the 174-neuron space
-W = diag(std(Parameters174'))\coeff;
-Projection33 = Parameters174'*W;
+W = diag(std(Parameters32'))\coeff;
+Projection33 = Parameters32'*W;
 
-Daset = DasetS;
+Daset = DasetS32;
 embedding_2D_stats33 = zeros(5,2);
 for j = 1:5
-    embedding_2D_stats33(j,:) = mean(Projection33(Daset==j,1:2));
+    embedding_2D_stats33(j,:) = median(Projection33(Daset==j,1:2));
 end
 figure(312);
 for k = 1:5
