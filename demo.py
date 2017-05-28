@@ -17,6 +17,7 @@ import numpy as np
 import scipy.io as sio
 import matplotlib.pyplot as plt
 from elephant.utils2 import extract_stats, genhurst, map_between_spaces
+from elephant.utils import norm
 from elephant.c2s_preprocessing import preprocess, percentile_filter
 
 
