@@ -4,20 +4,13 @@
 
 ## 0. Introduction
 
-This is a program based on convolutional neural networks for spike detection from calcium traces, written by @PTRRupprecht and @unidesigner, as part of the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python/Keras, with some minor (not necessarily required) parts in Matlab.
+This is a program based on convolutional neural networks for spike detection from calcium traces, written by @PTRRupprecht and @unidesigner, as part of the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python/Keras. The original version contained also Matlab code (still available) that was later replaced by Python code.
 
-Two networks have been tested: 1) A simple three-layer CNN. 2) The same CNN, but trained with selection of the training sets that is weighted according to their similarity to the test dataset with respect to statistical properties like kurtosis, autocorrelation times, hurst coefficients etc.
-
-1. Typical results
-2. Structure of the three-layer CNN (Elephant)
-3. Running the Elephant code
-4. The idea behind the embedding spaces
-5. Code organization related to the embedding space
-<br><br>
+A concise description of the algorithms and the ideas behind it will be published soon in the context of a review paper associated with the Spikefinder coding challenge.
 
 ## 1. Typical results
 
-At the bottom, the recorded calcium trace is shown; in the middle, the spikes (ground truth recording). Above are predictions from the Statistics-Embedded CNN (black), the simple Elephant CNN (green) and the predictions of a less elaborate, model-based algorithm (https://github.com/PTRRupprecht/SpikefinderCompetition2017, red).
+At the bottom, the recorded calcium trace is shown; in the middle, the spikes (ground truth recording). Above are predictions from three models: 1) the Statistics-Embedded CNN (black), 2) the simple CNN (green) and 3) the predictions of a less elaborate, model-based algorithm (https://github.com/PTRRupprecht/SpikefinderCompetition2017, red).
 
 The first example is from an OGB recording.
 
@@ -32,6 +25,32 @@ The thrid example is from a GCaMP6s recording that is particularly difficult to 
 <img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic5-8.png" width="700">
 
 <br><br>
+
+
+## 1. Instructions for Users (simple convolutional model)
+
+
+
+## 2. Instructions for Users (using embedding spaces)
+
+
+
+## 3. Code Organization for Developers
+
+
+
+
+
+
+Two approaches have been studied: 1) A simple three-layer CNN. 2) The same CNN, but trained with a selection of the training sets that is weighted according to their similarity to the test dataset with respect to statistical properties like kurtosis, autocorrelation times, hurst coefficients etc.
+
+1. Typical results
+2. Structure of the three-layer CNN
+3. Running the code
+4. The idea behind the embedding spaces
+5. Code organization related to the embedding space
+<br><br>
+
 
 
 ## 2. Spikefinder-Elephant, structure of the CNN

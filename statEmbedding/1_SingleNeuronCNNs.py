@@ -21,8 +21,9 @@ from keras.utils import np_utils
 from keras import metrics
 
 ### Fit models for each single neuron
-
+print('Fit and save models for each single neuron ... this can take some time')
 for iii in range(0,10):
+    print('Dataset %s out of %s' % (iii+1, 10))
     n_dataset = iii + 1
     windowsize = 100;
     windowsize2 = 32;
@@ -61,16 +62,15 @@ for iii in range(0,10):
             X[kk,:] = x1x[kk:kk+windowsize]
         
         # use only the valid part
-        yX = y1x[windowsize/10*4:x1x.shape[0]-windowsize/10*6]
-        y1x0 = y1x0[windowsize/10*4:x1x.shape[0]-windowsize/10*6]
+        yX = y1x[int(windowsize/10*4):int(x1x.shape[0]-windowsize/10*6)]
+        y1x0 = y1x0[int(windowsize/10*4):int(x1x.shape[0]-windowsize/10*6)]
         
         # process the data to fit into a keras NN
         XX = X.reshape((X.shape[0],windowsize,1))
         
-        indizes = range(0,yX.shape[0])
-        np.random.shuffle(indizes)
-        XX = XX[indizes,:,:]
-        yX = yX[indizes]     
+        p = np.random.permutation(len(yX))
+        XX = XX[p,:,:]
+        yX = yX[p]     
         
         inputs = Input(shape=(windowsize,1))
         outX = LocallyConnected1D(32, 32,strides=2, activation='relu')(inputs)
@@ -97,6 +97,7 @@ for iii in range(0,10):
         model.save_weights('statEmbedding/single_cell_models/my_model_later%d_%s.h5' % (n_dataset,n_neuron) )
 
 ### Apply every model (indices ii,jj) to each single neuron (iii,jjj)
+print('Apply every model to each single neuron ... this can take some time')
 
 BBX = np.zeros([10,37,10,37])
 BBX_later = np.zeros([10,37,10,37])
@@ -111,7 +112,7 @@ for iii in range(0,10):
     y1 = y1.values
     x1 = x1.values
     # discard NaNs
-    print n_dataset 
+    print('Processing dataset %s out of %s' % (n_dataset, 10))
     for jjj in range(0,x1.shape[1]):
         n_neuron = jjj
         y1x = y1[:,n_neuron]
@@ -119,8 +120,7 @@ for iii in range(0,10):
         # discard NaNs
         idx = ~np.isnan(x1x)
         y1x = y1x[idx]
-        x1x = x1x[idx]
-#            print n_dataset, n_neuron    
+        x1x = x1x[idx]  
         
         # smooth the spikes in time
         size_kernel = 15 # half-size of kernel
@@ -137,9 +137,8 @@ for iii in range(0,10):
             X[kk,:] = x1x[kk:kk+windowsize]
     
         # use only part of the target 
-        y1x = y1x[windowsize/10*4:x1x.shape[0]-windowsize/10*6]
-        y1x0 = y1x0[windowsize/10*4:x1x.shape[0]-windowsize/10*6]
-        
+        y1x = y1x[int(windowsize/10*4):int(x1x.shape[0]-windowsize/10*6)]
+        y1x0 = y1x0[int(windowsize/10*4):int(x1x.shape[0]-windowsize/10*6)]
         
         # process the data to fit into a keras NN
         X = X.reshape((X.shape[0],windowsize,1))
@@ -160,7 +159,7 @@ for iii in range(0,10):
         
                 BBX[iii,jjj,ii,jj] = np.corrcoef(Prediction,GroundTruth)[0,1]
                 
-                model.load_weights('my_model_later%d_%s.h5' % (n_datasetX,n_neuronX) )
+                model.load_weights('statEmbedding/single_cell_models/my_model_later%d_%s.h5' % (n_datasetX,n_neuronX) )
                 y_pred = model.predict(X, batch_size=32, verbose=0)
         
                 # calculate performance based on correlation as used with the spikefinder challenge (albeit with smoothed ground truth)

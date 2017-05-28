@@ -18,7 +18,6 @@ else:
 	nb_datasets = 5
 
 for iii, n_dataset in enumerate(range(1,nb_datasets+1)):
-	print n_dataset
 	if training:
 		x1 = pd.read_csv("spikefinder.train/%d.train.calcium.csv" % n_dataset)
 	else:
@@ -31,7 +30,7 @@ for iii, n_dataset in enumerate(range(1,nb_datasets+1)):
 	# calculate predictions
 	number_of_neurons = x1.shape[1]
 	for neuron_index in range(0,number_of_neurons):
-		print neuron_index
+		print('Analyze dataset %s, neuron %s' % (n_dataset,neuron_index+1))
 		x1x = x1[:,neuron_index]
 		idx = ~np.isnan(x1x)
 		calcium_traceX = norm(x1x[idx])

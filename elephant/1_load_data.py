@@ -2,40 +2,6 @@ import pandas as pd
 import numpy as np
 
 from elephant.utils import smooth, norm
-
-datasets = np.array([  1.,   1.,   1.,   1.,   1.,   1.,   1.,   1.,   1.,   1.,   1.,
-         2.,   2.,   2.,   2.,   2.,   2.,   2.,   2.,   2.,   2.,   2.,
-         2.,   2.,   2.,   2.,   2.,   2.,   2.,   2.,   2.,   2.,   3.,
-         3.,   3.,   3.,   3.,   3.,   3.,   3.,   3.,   3.,   3.,   3.,
-         3.,   4.,   4.,   4.,   4.,   4.,   4.,   5.,   5.,   5.,   5.,
-         5.,   5.,   5.,   5.,   5.,   6.,   6.,   6.,   6.,   6.,   6.,
-         6.,   6.,   6.,   7.,   7.,   7.,   7.,   7.,   7.,   7.,   7.,
-         7.,   7.,   7.,   7.,   7.,   7.,   7.,   7.,   7.,   7.,   7.,
-         7.,   7.,   7.,   7.,   7.,   7.,   7.,   7.,   7.,   7.,   7.,
-         7.,   7.,   7.,   7.,   7.,   7.,   7.,   8.,   8.,   8.,   8.,
-         8.,   8.,   8.,   8.,   8.,   8.,   8.,   8.,   8.,   8.,   8.,
-         8.,   8.,   8.,   8.,   8.,   8.,   9.,   9.,   9.,   9.,   9.,
-         9.,   9.,   9.,   9.,   9.,   9.,   9.,   9.,   9.,   9.,   9.,
-         9.,   9.,   9.,   9.,  10.,  10.,  10.,  10.,  10.,  10.,  10.,
-        10.,  10.,  10.,  10.,  10.,  10.,  10.,  10.,  10.,  10.,  10.,
-        10.,  10.,  10.,  10.,  10.,  10.,  10.,  10.,  10.])
-								
-neurons = np.array([  0.,   1.,   2.,   3.,   4.,   5.,   6.,   7.,   8.,   9.,  10.,
-         0.,   1.,   2.,   3.,   4.,   5.,   6.,   7.,   8.,   9.,  10.,
-        11.,  12.,  13.,  14.,  15.,  16.,  17.,  18.,  19.,  20.,   0.,
-         1.,   2.,   3.,   4.,   5.,   6.,   7.,   8.,   9.,  10.,  11.,
-        12.,   0.,   1.,   2.,   3.,   4.,   5.,   0.,   1.,   2.,   3.,
-         4.,   5.,   6.,   7.,   8.,   0.,   1.,   2.,   3.,   4.,   5.,
-         6.,   7.,   8.,   0.,   1.,   2.,   3.,   4.,   5.,   6.,   7.,
-         8.,   9.,  10.,  11.,  12.,  13.,  14.,  15.,  16.,  17.,  18.,
-        19.,  20.,  21.,  22.,  23.,  24.,  25.,  26.,  27.,  28.,  29.,
-        30.,  31.,  32.,  33.,  34.,  35.,  36.,   0.,   1.,   2.,   3.,
-         4.,   5.,   6.,   7.,   8.,   9.,  10.,  11.,  12.,  13.,  14.,
-        15.,  16.,  17.,  18.,  19.,  20.,   0.,   1.,   2.,   3.,   4.,
-         5.,   6.,   7.,   8.,   9.,  10.,  11.,  12.,  13.,  14.,  15.,
-        16.,  17.,  18.,  19.,   0.,   1.,   2.,   3.,   4.,   5.,   6.,
-         7.,   8.,   9.,  10.,  11.,  12.,  13.,  14.,  15.,  16.,  17.,
-        18.,  19.,  20.,  21.,  22.,  23.,  24.,  25.,  26.])
 								
 # discard neuron 130 (spikes and calcium uncorrelated)
 neurons = np.delete(neurons, 129, 0)
@@ -63,14 +29,14 @@ for iii, n_dataset in enumerate(range(1,11)):
     y1 = y1.values
     number_of_neurons = x1.shape[1]
     for neuron_index in range(number_of_neurons):
-		y1x = y1[:,neuron_index]
-		x1x = x1[:,neuron_index]
-		# discard NaNs
-		idx = ~np.isnan(x1x)
-		if np.any(neurons[datasets == n_dataset] == neuron_index):
-			alldata2[ n_dataset ][ neuron_index ][ "spikes" ] = y1x[idx]
-			alldata2[ n_dataset ][ neuron_index ][ "calcium" ] = norm(x1x[idx])
-			alldata2[ n_dataset ][ neuron_index ][ "spikes_smooth" ] = norm(np.convolve(y1x[idx], kernelX, mode="same"))
+        y1x = y1[:,neuron_index]
+        x1x = x1[:,neuron_index]
+        # discard NaNs
+        idx = ~np.isnan(x1x)
+        if np.any(neurons[datasets == n_dataset] == neuron_index):
+            alldata2[ n_dataset ][ neuron_index ][ "spikes" ] = y1x[idx]
+            alldata2[ n_dataset ][ neuron_index ][ "calcium" ] = norm(x1x[idx])
+            alldata2[ n_dataset ][ neuron_index ][ "spikes_smooth" ] = norm(np.convolve(y1x[idx], kernelX, mode="same"))
 #			alldata2[ n_dataset ][ neuron_index ][ "calcium_smooth" ] = smooth(x1x[idx], window_len=calcium_smoothing_windowsize)
 #			alldata2[ n_dataset ][ neuron_index ][ "calcium_smooth_norm" ] = norm(smooth(x1x[idx], window_len=calcium_smoothing_windowsize))
 
