@@ -63,7 +63,7 @@ The next challenge is to map a neuron of a dataset of unknown properties onto th
 
 Next we trained a regressor to map the statistical poperties' embedding space to the predictive embedding space. For this we used a DecisionTreeRegressor from the scikit-learn package.
 
-<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Figure3.png" width="650">
+<center><img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Figure3.png" width="650"></center>
 
 In total, this procedure spans an embedding space that allows to understand the mutual predictive power of different datasets, and the mutual distance between datasets in terms of their statistical properties.
 
@@ -76,15 +76,15 @@ At the bottom, the recorded calcium trace is shown; in the middle, the spikes (g
 
 The first example is from an OGB recording.
 
-<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic1-4.png" width="600">
+<center><img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic1-4.png" width="600"></center>
 
 The second example is from a jRGECO recording that is particularly nice and easy to analyze.
 
-<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic10-7.png" width="600">
+<center><img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic10-7.png" width="600"></center>
 
 The thrid example is from a GCaMP6s recording that is particularly difficult to analyze (but this is one of the nicer cells in terms of SNR), also because the firing rate is high compared to the other datasets.
 
-<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic5-8.png" width="600">
+<center><img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic5-8.png" width="600"></center>
 
 <br><br>
 
