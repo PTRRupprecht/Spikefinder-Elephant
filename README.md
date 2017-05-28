@@ -27,11 +27,11 @@ We suggest to generate a local copy of this repository, open the file ´demo.py�
 
 This part uses a simple pre-trained convolutional neuronal network (CNN) to predict spikes from the calcium traces. 
 
-![Another example of deconvolved trace of a dataset without ground truth](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Stripe2.png)
-
 ### 2. Instructions for Users (using embedding spaces)
 
 This section can be found in Part II of ´demo.py´. To refine predictions, a pre-trained CNN is loaded as before, but retrained based on a selection of the training data. The selection is based on statistical properties of the calcium traces of the dataset to be analyzed. The idea of embedding spaces is explained below in further detail.
+
+![Another example of deconvolved trace of a dataset without ground truth](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Stripe2.png)
 
 ### 3. Code Organization for Developers
 
