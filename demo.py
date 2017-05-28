@@ -19,8 +19,8 @@ import matplotlib.pyplot as plt
 from elephant.utils2 import extract_stats, genhurst, map_between_spaces
 from elephant.utils import norm
 from elephant.c2s_preprocessing import preprocess, percentile_filter
-
-
+from copy import deepcopy
+from sklearn.decomposition import PCA
 # PART 0. Preliminaries.
 
 
@@ -72,7 +72,7 @@ plt.figure(101)
 plt.imshow(np.transpose(Ypredict), aspect='auto')
 plt.gray()
 plt.clim(0.2,20)
-plt.figure(104)
+plt.figure(102)
 plt.imshow(np.transpose(tracex[int(windowsize*before_frac):calcium_traceX.shape[0]-int(windowsize*after_frac),:]), aspect='auto')
 plt.jet()
 plt.clim(0,8)
@@ -83,16 +83,31 @@ plt.clim(0,8)
 
 
 #_____Compute statistical porperties__________________________________
-print('Compute statistical properties of your dataset')
+print('Compute statistical properties of your dataset ...')
 stats = extract_stats(tracex[:,:])
 
 
 #_____Compute location in embedding space_____________________________
-Parameters174temp = sio.loadmat('statEmbedding/Parameters174py.mat')['Parameters174temp']
+A = sio.loadmat('statEmbedding/Parameters174py.mat',variable_names=['DasetS','Parameters174','Parameters174temp'])
+DasetS = A['DasetS']
+Parameters174temp = A['Parameters174temp']
+Parameters174 = A['Parameters174']
+goodindizes = sio.loadmat('statEmbedding/embedding_spacesX.mat')['goodindizes']
+
+Parameters174 = Parameters174[:,goodindizes]
+DasetS = DasetS[goodindizes]
+
+ParametersXX = np.squeeze(deepcopy(Parameters174))
+for k in range(0,10):
+    indizes = np.where(DasetS==k+1)[0]
+    for j in range(0,18):
+        ParametersXX[j,indizes] = np.mean(ParametersXX[j,indizes])
+
+pca2 = PCA(n_components=2)
+pca2.fit(np.transpose(ParametersXX))
 
 for k in range(0,18):
     stats[:,k] = (stats[:,k] - np.mean(Parameters174temp[:,k]))/np.std(Parameters174temp[:,k])
-
 P1 = pca2.transform(stats)
 P1mean = np.mean(P1,axis=0)
 #plt.figure(31222)
@@ -158,4 +173,4 @@ plt.clim(0.2,20)
 plt.figure(104)
 plt.imshow(np.transpose(tracex[int(windowsize*before_frac):calcium_traceX.shape[0]-int(windowsize*after_frac),:]), aspect='auto')
 plt.jet()
-plt.clim(0,2)
+plt.clim(0,8)
