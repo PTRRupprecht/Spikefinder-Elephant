@@ -23,13 +23,13 @@ A concise description of the algorithms and the ideas behind it will be publishe
 
 ### 1. Instructions for Users (simple convolutional model)
 
-We suggest to generate a local copy of this repository, open the file ´demo.py´ and execute the code step by step (Part I). In this code, an example dataset is used (an unknown dataset of 110 neurons with calcium recordings without ground truth).
+We suggest to generate a local copy of this repository, open the file `demo.py` and execute the code step by step (Part I). In this code, an example dataset is used (an unknown dataset of 110 neurons with calcium recordings without ground truth).
 
 This part uses a simple pre-trained convolutional neuronal network (CNN) to predict spikes from the calcium traces. 
 
 ### 2. Instructions for Users (using embedding spaces)
 
-This section can be found in Part II of ´demo.py´. To refine predictions, a pre-trained CNN is loaded as before, but retrained based on a selection of the training data. The selection is based on statistical properties of the calcium traces of the dataset to be analyzed. The idea of embedding spaces is explained below in further detail.
+This section can be found in Part II of `demo.py`. To refine predictions, a pre-trained CNN is loaded as before, but retrained based on a selection of the training data. The selection is based on statistical properties of the calcium traces of the dataset to be analyzed. The idea of embedding spaces is explained below in further detail.
 
 ![Another example of deconvolved trace of a dataset without ground truth](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Stripe2.png)
 
@@ -37,8 +37,8 @@ This section can be found in Part II of ´demo.py´. To refine predictions, a pr
 
 To understand how the model was developed and how predictions for the Spikefinder competition were made, please refer to:
 
-1) ´run_basic_CNN.py´ for the simple CNN model
-2) ´run_statEmbedding.py´ for the model based on embedding spaces
+1) `run_basic_CNN.py` for the simple CNN model
+2) `run_statEmbedding.py` for the model based on embedding spaces
 
 Both are based on a simple neuronal network with three convolutional layers:
 
