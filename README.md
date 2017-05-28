@@ -4,7 +4,7 @@
 
 ## 0. Introduction
 
-This is a program based on convolutional neural networks for spike detection from calcium traces, written by @PTRRupprecht and @unidesigner, as part of the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python (3.6) and Keras. The original version contained also Matlab code (still available) that was later replaced by Python code. As a first step, install Python 3 (e.g. via Anaconda, https://www.continuum.io/downloads), then install Keras (https://keras.io/, based on Tensorflow).
+This is a program based on convolutional neural networks for spike detection from calcium traces, written by @PTRRupprecht and @unidesigner, as part of the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python (3.6) and Keras. The original version contained also Matlab code (still available) that was later replaced by Python code.
 
 
 0. Install tensorflow and Keras (https://keras.io/) in a Python 3 environment (e.g. Anaconda, https://www.continuum.io/downloads)
