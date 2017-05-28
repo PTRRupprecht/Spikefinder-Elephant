@@ -4,7 +4,7 @@
 
 ![Example of deconvolved trace of a dataset without ground truth](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Stripe1.png)
 
-## 0. Introduction
+### 0. Introduction
 
 This is a program based on convolutional neural networks for spike detection from calcium traces, written by @PTRRupprecht and @unidesigner, as part of the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python (3.6) and Keras. The original version contained also Matlab code (still available) that was later replaced by Python code.
 
@@ -23,11 +23,11 @@ A concise description of the algorithms and the ideas behind it will be publishe
 
 ### 1. Instructions for Users (simple convolutional model)
 
-![Another example of deconvolved trace of a dataset without ground truth](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Stripe2.png)
-
 We suggest to generate a local copy of this repository, open the file ´demo.py´ and execute the code step by step (Part I). In this code, an example dataset is used (an unknown dataset of 110 neurons with calcium recordings without ground truth).
 
 This part uses a simple pre-trained convolutional neuronal network (CNN) to predict spikes from the calcium traces. 
+
+![Another example of deconvolved trace of a dataset without ground truth](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Stripe2.png)
 
 ### 2. Instructions for Users (using embedding spaces)
 
