@@ -63,7 +63,7 @@ The next challenge is to map a neuron of a dataset of unknown properties onto th
 
 Next we trained a regressor to map the statistical poperties' embedding space to the predictive embedding space. For this we used a DecisionTreeRegressor from the scikit-learn package.
 
-![Mapping between embedding spaces](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Figure3.png)
+<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Figure3.png" width="650">
 
 In total, this procedure spans an embedding space that allows to understand the mutual predictive power of different datasets, and the mutual distance between datasets in terms of their statistical properties.
 
