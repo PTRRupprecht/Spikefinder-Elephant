@@ -76,15 +76,15 @@ At the bottom, the recorded calcium trace is shown; in the middle, the spikes (g
 
 The first example is from an OGB recording.
 
-<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic1-4.png" width="500">
+<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic1-4.png" width="600">
 
 The second example is from a jRGECO recording that is particularly nice and easy to analyze.
 
-<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic10-7.png" width="500">
+<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic10-7.png" width="600">
 
 The thrid example is from a GCaMP6s recording that is particularly difficult to analyze (but this is one of the nicer cells in terms of SNR), also because the firing rate is high compared to the other datasets.
 
-<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic5-8.png" width="500">
+<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic5-8.png" width="600">
 
 <br><br>
 
