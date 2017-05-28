@@ -4,77 +4,44 @@
 
 ## 0. Introduction
 
-This is a program based on convolutional neural networks for spike detection from calcium traces, written by @PTRRupprecht and @unidesigner, as part of the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python/Keras. The original version contained also Matlab code (still available) that was later replaced by Python code.
-
-A concise description of the algorithms and the ideas behind it will be published soon in the context of a review paper associated with the Spikefinder coding challenge.
-
-## 1. Typical results
-
-At the bottom, the recorded calcium trace is shown; in the middle, the spikes (ground truth recording). Above are predictions from three models: 1) the Statistics-Embedded CNN (black), 2) the simple CNN (green) and 3) the predictions of a less elaborate, model-based algorithm (https://github.com/PTRRupprecht/SpikefinderCompetition2017, red).
-
-The first example is from an OGB recording.
-
-<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic1-4.png" width="700">
-
-The second example is from a jRGECO recording that is particularly nice and easy to analyze.
-
-<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic10-7.png" width="700">
-
-The thrid example is from a GCaMP6s recording that is particularly difficult to analyze (but this is one of the nicer cells in terms of SNR), also because the firing rate is high compared to the other datasets.
-
-<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic5-8.png" width="700">
-
-<br><br>
+This is a program based on convolutional neural networks for spike detection from calcium traces, written by @PTRRupprecht and @unidesigner, as part of the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python (3.6) and Keras. The original version contained also Matlab code (still available) that was later replaced by Python code. As a first step, install Python 3 (e.g. via Anaconda, https://www.continuum.io/downloads), then install Keras (https://keras.io/, based on Tensorflow).
 
 
-## 1. Instructions for Users (simple convolutional model)
+0. Install tensorflow and Keras (https://keras.io/) in a Python 3 environment (e.g. Anaconda, https://www.continuum.io/downloads)
 
-
-
-## 2. Instructions for Users (using embedding spaces)
-
-
-
-## 3. Code Organization for Developers
-
-
-
-
-
-
-Two approaches have been studied: 1) A simple three-layer CNN. 2) The same CNN, but trained with a selection of the training sets that is weighted according to their similarity to the test dataset with respect to statistical properties like kurtosis, autocorrelation times, hurst coefficients etc.
-
-1. Typical results
-2. Structure of the three-layer CNN
-3. Running the code
-4. The idea behind the embedding spaces
-5. Code organization related to the embedding space
-<br><br>
-
-
-
-## 2. Spikefinder-Elephant, structure of the CNN
-
-![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Figure4.png)
-
-Windowsize of the input is 128 datapoints, corresponding to 1.28 sec. Filter sizes of the convolutional filters are 41, 21 and 7 pixel for conv1d_1, conv1d_2 and conv1d_3, respectively. No zero padding was used.
-<br><br>
-
-## 3. Running the Elephant CNN code
-
-0. Install tensorflow and keras into a Python virtualenv
-
-1. Download train and test data into folders relative to this root folder:
+1. Download train and test data of the Spikefinder competition into folders relative to this root folder:
     spikefinder.test/
     spikefinder.train/
 
 2. Start ipython, spyder, ...
 
-3. If needed, configure training in elephant/config_elephant.py
+3. Start with ´demo.py´
 
-4. Run 'run_elephant.py'
+A concise description of the algorithms and the ideas behind it will be published soon in the context of a review paper associated with the Spikefinder coding challenge.
+
+## 1. Instructions for Users (simple convolutional model)
+
+We suggest to generate a local copy of this repository, open the file ´demo.py´ and execute the code step by step (Part I). In this code, an example dataset is used (an unknown dataset of 110 neurons with calcium recordings without ground truth).
+
+This part uses a simple pre-trained convolutional neuronal network (CNN) to predict spikes from the calcium traces. 
+
+## 2. Instructions for Users (using embedding spaces)
+
+This section can be found in Part II of ´demo.py´. To refine predictions, a pre-trained CNN is loaded as before, but retrained based on a selection of the training data. The selection is based on statistical properties of the calcium traces of the dataset to be analyzed. The idea of embedding spaces is explained below in further detail.
+
+## 3. Code Organization for Developers
+
+To understand how the model was developed and how predictions for the Spikefinder competition were made, please refer to:
+
+1) ´run_basic_CNN.py´ for the simple CNN model
+2) ´run_statEmbedding.py´ for the model based on embedding spaces
+
+Both are based on a simple neuronal network with three convolutional layers:
+
+![alt text](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Figure4.png)
+
+Windowsize of the input is 128 datapoints, corresponding to 1.28 sec. Filter sizes of the convolutional filters are 41, 21 and 7 pixel for conv1d_1, conv1d_2 and conv1d_3, respectively. No zero padding was used.
 <br><br>
-
 
 ## 4. The idea behind the embedding spaces
 
@@ -98,8 +65,22 @@ In total, this procedure spans an embedding space that allows to understand the 
 
 It would probably require a larger collection of diverse datasets to make this embedding robust and good for any new datasets. In the 10 datasets given, there are some outliers (e.g. dataset 5), and if a new dataset is an outlier as well (which you cannot know beforehand easily), it will not be predicted well by any model that uses those 10 datasets in a selective or attentive manner.
 
+
+## 5. Typical results
+
+At the bottom, the recorded calcium trace is shown; in the middle, the spikes (ground truth recording). Above are predictions from three models: 1) the Statistics-Embedded CNN (black), 2) the simple CNN (green) and 3) the predictions of a less elaborate, model-based algorithm (https://github.com/PTRRupprecht/SpikefinderCompetition2017, red).
+
+The first example is from an OGB recording.
+
+<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic1-4.png" width="700">
+
+The second example is from a jRGECO recording that is particularly nice and easy to analyze.
+
+<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic10-7.png" width="700">
+
+The thrid example is from a GCaMP6s recording that is particularly difficult to analyze (but this is one of the nicer cells in terms of SNR), also because the firing rate is high compared to the other datasets.
+
+<img src="https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/pic5-8.png" width="700">
+
 <br><br>
 
-## 5. Code organization related to the embedding space
-
-Execute 'run_statEmbedding.py' step by step. The procedure consists of several steps (fitting single-neuron models, generating embedding spaces, mapping between the spaces; loading data, defining the data, focused retraining of an existing model; evaluation), but the first three steps can be skipped, because they generate files that are already provided in the repository.
