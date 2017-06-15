@@ -15,9 +15,11 @@ This is a program based on convolutional neural networks for spike detection fro
     spikefinder.test/
     spikefinder.train/
 
-2. a) Start with the interactive Jupyter file `demo.ipynb`
+2. a) Start with the interactive Jupyter file `Demo.ipynb`
 
 2. b) Start ipython or spyder and load the `demo.py`
+
+Alternative, we provide a [Docker file](/docker/) that can be used to run `Demo.ipynb` in a containerized version on any platform.
 
 A concise description of the algorithms and the ideas behind it will be published soon in the context of a review paper associated with the Spikefinder coding challenge.
 
