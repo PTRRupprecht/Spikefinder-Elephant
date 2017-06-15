@@ -6,7 +6,7 @@
 
 ### 0. Introduction
 
-This is a program based on convolutional neural networks for spike detection from calcium traces, written by @PTRRupprecht and @unidesigner, as part of the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python (3.6) and Keras. The original version contained also Matlab code (still available) that was later replaced by Python code.
+This is a program based on convolutional neural networks for spike detection from calcium traces, written by [@PTRRupprecht](https://github.com/PTRRupprecht) and [@unidesigner](https://github.com/unidesigner), as part of the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python and Keras. The original version used for the competition submission contained also Matlab code (still in the repository) that was later replaced by Python code.
 
 
 0. Install tensorflow and Keras (https://keras.io/) in a Python 3 environment (e.g. Anaconda, https://www.continuum.io/downloads)
@@ -19,11 +19,13 @@ This is a program based on convolutional neural networks for spike detection fro
 
 2. b) Start ipython or spyder and load the `demo.py`
 
-Alternative, we provide a [Docker file](/docker/) that can be used to run `Demo.ipynb` in a containerized version on any platform.
+Alternatively, we provide a [Docker file](/docker/) that can be used to run `Demo.ipynb` in a containerized version on any platform.
 
 A concise description of the algorithms and the ideas behind it will be published soon in the context of a review paper associated with the Spikefinder coding challenge.
 
 ### 1. Instructions for Users (simple convolutional model)
+
+For an interactive readme, open `Demo.ipynb`. Read on if you prefer to use `demo.py`:
 
 We suggest to generate a local copy of this repository, open the file `demo.py` and execute the code step by step (Part I). In this code, an example dataset is used (an unknown dataset of 110 neurons with calcium recordings without ground truth).
 
