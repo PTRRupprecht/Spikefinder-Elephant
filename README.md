@@ -9,7 +9,7 @@
 This is a program based on convolutional neural networks for spike detection from calcium traces, written by [@PTRRupprecht](https://github.com/PTRRupprecht) and [@unidesigner](https://github.com/unidesigner), as part of the Spikefinder coding challenge 2017 (http://spikefinder.codeneuro.org/). It is written in Python and Keras. The original version used for the competition submission contained also Matlab code (still in the repository) that was later replaced by Python code.
 
 
-0. Install tensorflow and Keras (https://keras.io/) in a Python 3 environment (e.g. Anaconda, https://www.continuum.io/downloads)
+0. Install tensorflow and [Keras](https://keras.io/) in a Python 3 environment (e.g. [Anaconda]( https://www.continuum.io/downloads))
 
 1. Download train and test data of the Spikefinder competition into folders relative to this root folder:
     spikefinder.test/
@@ -76,7 +76,7 @@ It would probably require a larger collection of diverse datasets to make this e
 
 ### 5. Typical results
 
-At the bottom, the recorded calcium trace is shown; in the middle, the spikes (ground truth recording). Above are predictions from three models: 1) the Statistics-Embedded CNN (black), 2) the simple CNN (green) and 3) the predictions of a less elaborate, model-based algorithm (https://github.com/PTRRupprecht/SpikefinderCompetition2017, red).
+At the bottom, the recorded calcium trace is shown; in the middle, the spikes (ground truth recording). Above are predictions from three models: 1) the Statistics-Embedded CNN (black), 2) the simple CNN (green) and 3) the predictions of a [less elaborate, model-based algorithm](https://github.com/PTRRupprecht/SpikefinderCompetition2017) (red).
 
 The first example is from an OGB recording.
 
