@@ -33,7 +33,7 @@ This part uses a simple pre-trained convolutional neuronal network (CNN) to pred
 
 ### 2. Instructions for Users (using embedding spaces)
 
-This section can be found in Part II of `demo.py`. To refine predictions, a pre-trained CNN is loaded as before, but retrained based on a selection of the training data. The selection is based on statistical properties of the calcium traces of the dataset to be analyzed. The idea of embedding spaces is explained below in further detail.
+This section can be found in Part II of `demo.py` (or Part II of `Demo.ipynb`). To refine predictions, a pre-trained CNN is loaded as before, but retrained based on a selection of the training data. The selection is based on statistical properties of the calcium traces of the dataset to be analyzed. The idea of embedding spaces is explained below in further detail.
 
 ![Another example of deconvolved trace of a dataset without ground truth](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Stripe2.png)
 
