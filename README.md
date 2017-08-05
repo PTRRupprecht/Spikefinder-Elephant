@@ -46,9 +46,9 @@ To understand how the model was developed and how predictions for the Spikefinde
 
 Both are based on a simple neuronal network with three convolutional layers:
 
-![Table with main layers of the basic CNN in Keras](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/ConvolutionalNetXX.jpg)
+![Table with main layers of the basic CNN in Keras](https://github.com/PTRRupprecht/Spikefinder-Elephant/blob/master/figures/Figure4.png)
 
-Windowsize of the input is 128 datapoints, corresponding to 1.28 sec. Filter sizes of the convolutional filters are 41, 21 and 7 pixel for conv1d_1, conv1d_2 and conv1d_3, respectively. No zero padding was used. N is the number of inputs, i.e., the number of timepoints that are processed.
+Windowsize of the input is 128 datapoints, corresponding to 1.28 sec. Filter sizes of the convolutional filters are 41, 21 and 7 pixel for conv1d_1, conv1d_2 and conv1d_3, respectively. No zero padding was used.
 <br><br>
 
 ### 4. The idea behind the embedding spaces
