@@ -11,7 +11,7 @@ This is a program based on convolutional neural networks for spike detection fro
 
 0. Install tensorflow and [Keras](https://keras.io/) in a Python 3 environment (e.g. [Anaconda]( https://www.continuum.io/downloads))
 
-1. Download train and test data of the Spikefinder competition into folders relative to this root folder:
+1. (not required) Download train and test data of the Spikefinder competition into folders relative to this root folder:
     spikefinder.test/
     spikefinder.train/
 
