@@ -13,6 +13,7 @@ Only spontaneous activity.
 @author: Peter Rupprecht, peter.rupprecht@fmi.ch
 """
 
+from __future__ import print_function
 import numpy as np
 import scipy.io as sio
 import matplotlib.pyplot as plt
