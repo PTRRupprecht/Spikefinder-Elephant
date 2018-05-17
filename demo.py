@@ -54,7 +54,7 @@ model.load_weights("models/model1.h5")
 
 
 #_____Make predictions_______________________________________________
-Ypredict = np.zeros((tracex.shape[0]-windowsize,tracex.shape[1]))
+Ypredict = np.zeros( tracex.shape ) * np.nan # with nan padding
 for k in range(0,trace.shape[1]):
     print('Predicting spikes for neuron %s out of %s' % (k+1, trace.shape[1]))
     x1x = tracex[:,k]
@@ -65,7 +65,9 @@ for k in range(0,trace.shape[1]):
     for jj in range(0,(calcium_traceX.shape[0]-windowsize)):
         XX[jj,:,0] = calcium_traceX[jj:(jj+windowsize)]
     A = model.predict( XX,batch_size = 4096 )
-    Ypredict[idx[0:len(idx)-windowsize],k] = A[:,0]
+
+    indices = slice( int(windowsize*before_frac), int(windowsize*before_frac+len(A)) )
+    Ypredict[ indices,k ] = A[:,0]
 
 
 #_____Plot  results__________________________________________________
@@ -74,7 +76,7 @@ plt.imshow(np.transpose(Ypredict), aspect='auto')
 plt.gray()
 plt.clim(0.2,20)
 plt.figure(102)
-plt.imshow(np.transpose(tracex[int(windowsize*before_frac):calcium_traceX.shape[0]-int(windowsize*after_frac),:]), aspect='auto')
+plt.imshow(np.transpose(tracex), aspect='auto')
 plt.jet()
 plt.clim(0,8)
 
@@ -152,7 +154,8 @@ for jjj in range(0,5):
 
 
 #_____Make refined predictions________________________________________
-Ypredict = np.zeros((tracex.shape[0]-windowsize,tracex.shape[1]))
+Ypredict = np.zeros( tracex.shape ) * np.nan # with nan padding
+
 for k in range(0,trace.shape[1]):
     print('Predicting spikes for neuron %s out of %s' % (k+1, trace.shape[1]))
     x1x = tracex[:,k]
@@ -163,7 +166,9 @@ for k in range(0,trace.shape[1]):
     for jj in range(0,(calcium_traceX.shape[0]-windowsize)):
         XX[jj,:,0] = calcium_traceX[jj:(jj+windowsize)]
     A = model.predict( XX,batch_size = 4096 )
-    Ypredict[idx[0:len(idx)-windowsize],k] = A[:,0]
+
+    index = slice( int(windowsize*before_frac), int(windowsize*before_frac+len(A)) )
+    Ypredict[ index,k ] = A[:,0]
 
 
 #_____Plot refined results______________________________________________
@@ -172,6 +177,6 @@ plt.imshow(np.transpose(Ypredict), aspect='auto')
 plt.gray()
 plt.clim(0.2,20)
 plt.figure(104)
-plt.imshow(np.transpose(tracex[int(windowsize*before_frac):calcium_traceX.shape[0]-int(windowsize*after_frac),:]), aspect='auto')
+plt.imshow(np.transpose(tracex), aspect='auto')
 plt.jet()
 plt.clim(0,8)
