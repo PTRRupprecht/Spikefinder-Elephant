@@ -69,5 +69,11 @@ In total, this procedure spans an embedding space that allows to understand the 
 
 It would probably require a larger collection of diverse datasets to make this embedding robust and good for any new datasets. In the 10 datasets given, there are some outliers (e.g. dataset 5), and if a new dataset is an outlier as well (which you cannot know beforehand easily), it will not be predicted well by any model that uses those 10 datasets in a selective or attentive manner.
 
+### 5. Further applications and analysis
+
 Some results of the network applied to before unknown datasets are shown in [this blog post](https://ptrrupprecht.wordpress.com/2017/08/01/a-convolutional-network-to-deconvolve-calcium-traces-living-in-an-embedding-space-of-statistical-properties/).
+
+We also investigated how well the algorithm generalizes to unseen datasets and found that the performance degrades only slightly for datasets that have not been seen during training, see [this blog post](https://ptrrupprecht.wordpress.com/2018/06/23/how-well-do-cnns-for-spike-detection-generalize-to-unseen-datasets/).
+
+
 
