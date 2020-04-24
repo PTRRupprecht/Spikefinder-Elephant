@@ -1,3 +1,6 @@
+### Update (2020-04-24): A new, more powerful and more user-friendly spike detection algorithm based on deep networks is in progress and will be made available on Github in June 2020. The new algorithm will be based on a much larger ground truth and allow for calibrated deconvolution. If you want to know more beforehand, please get in touch via p.t.r.rupprecht+cascade@gmail.com
+
+<br/><br/> 
 
 "With four parameters I can fit an elephant, and with five I can make him wiggle his trunk."
 *John von Neumann*
