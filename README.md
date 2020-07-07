@@ -1,4 +1,4 @@
-### Update (2020-04-24): A new, more powerful and more user-friendly spike detection algorithm based on deep networks is in progress and will be made available on Github in June 2020. The new algorithm will be based on a much larger ground truth and allow for calibrated deconvolution. If you want to know more beforehand, please get in touch via p.t.r.rupprecht+cascade@gmail.com
+### Update (July 2020): We developed a new, more powerful and much more user-friendly spike detection algorithm based on deep networks. The new algorithm is based on a much larger ground truth and allows for calibrated deconvolution. A preprint will be published soon, the algorithm is already online: https://github.com/HelmchenLabSoftware/Cascade
 
 <br/><br/> 
 
